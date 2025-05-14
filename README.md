@@ -1,139 +1,143 @@
-# 🔵 Indoor Thermal Comfort Monitor (Simulation)
+# 🔵 Indoor Thermal Comfort Monitor
 
-A modern, interactive Streamlit web app to monitor, analyze, and visualize indoor thermal comfort in real time. Designed for researchers, building managers, and anyone interested in understanding and optimizing indoor comfort conditions.
+A modern, interactive Streamlit web application for real-time thermal comfort monitoring and analysis. This application calculates and visualizes PMV (Predicted Mean Vote) and PPD (Predicted Percentage of Dissatisfied) values based on environmental parameters using the ISO 7730-2005 standard.
 
----
+## 📁 Project Structure
 
-## 🚀 Features
+```
+thermal-comfort-monitor/
+├── app.py                 # Main application file
+├── requirements.txt       # Project dependencies
+├── README.md             # Project documentation
+├── calculations/         # Calculation modules
+│   └── thermal_comfort.py # PMV/PPD calculations
+├── components/           # UI components
+│   └── ui_components.py  # Reusable UI elements
+├── styles/              # Custom styling
+│   └── custom_css.py    # Custom CSS styles
+└── utils/               # Utility functions
+    └── helpers.py       # Helper functions
+```
 
-- **Real-Time PMV/PPD Calculation:**
-  - Uses the ISO 7730:2005 standard for accurate comfort metrics.
-- **Customizable Environmental Parameters:**
-  - Adjust air temperature, mean radiant temperature, humidity, air velocity, metabolic rate, and clothing insulation.
-- **User-Defined Comfort Thresholds:**
-  - Set your own PMV and PPD comfort ranges.
-- **Session Management:**
-  - Save and load session data (JSON), including all parameters and history.
-- **Session Tagging & Color Coding:**
-  - Tag sessions (e.g., Office, Home) and assign a color for easy identification.
-- **Live Metrics Dashboard:**
-  - Beautiful, responsive metric cards for all key parameters.
-- **Comfort Analysis Visualizations:**
-  - PMV/PPD history charts
-  - Comfort timeline visualization
-  - Comfort vs Discomfort pie chart
-  - Session statistics (min, max, avg)
-- **User Notes:**
-  - Add and save notes for each session.
-- **User Feedback Poll:**
-  - Users can rate their comfort (Too Cold, Comfortable, Too Hot) and see a live pie chart of all feedback.
-- **Downloadable History:**
-  - Export PMV/PPD history as CSV.
-- **Reset Options:**
-  - Reset PMV/PPD history with one click.
-- **Responsive UI:**
-  - Works in both light and dark mode, with custom CSS for a modern look.
-- **Help & Documentation:**
-  - Built-in help section for new users.
+## ✨ Key Features
 
----
+### 1. Real-Time Monitoring
+- Live PMV/PPD calculations using ISO 7730-2005 model
+- Instant updates of comfort metrics
+- Real-time visualization of comfort status
 
-## 🛠️ Installation & Setup
+### 2. Environmental Parameters
+- Air Temperature (°C)
+- Mean Radiant Temperature (°C)
+- Relative Humidity (%)
+- Air Velocity (m/s)
+- Metabolic Rate (met)
+- Clothing Insulation (clo)
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Vishnu252005/Indoor-Thermal-Comfort-Monitor.git
-   ```
+### 3. Interactive Visualizations
+- PMV History Chart
+- PPD History Chart
+- Comfort Timeline
+- Comfort vs Discomfort Statistics
+- User Feedback Pie Chart
 
-2. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
+### 4. Session Management
+- Save session data (JSON format)
+- Load previous sessions
+- Session tagging and color coding
+- User notes for each session
 
-3. **Run the app:**
-   ```bash
-   streamlit run app.py
-   ```
+### 5. Customization Options
+- Customizable app title and subtitle
+- Session tag and color selection
+- Adjustable comfort thresholds
+- Modern, responsive UI design
 
-4. **Open in your browser:**
-   - By default, visit [http://localhost:8501](http://localhost:8501)
+### 6. User Feedback System
+- Real-time comfort feedback collection
+- Visual feedback statistics
+- Three-level comfort rating (Too Cold, Comfortable, Too Hot)
 
----
+## 🚀 Installation
 
-## 🖥️ Usage Guide
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/thermal-comfort-monitor.git
+cd thermal-comfort-monitor
+```
 
-### 1. **Adjust Parameters**
-- Use the sidebar to set environmental and personal parameters.
-- All changes update the comfort metrics and charts in real time.
-
-### 2. **Set Comfort Thresholds**
-- Define your own PMV/PPD comfort zone for personalized recommendations.
-
-### 3. **Session Management**
-- Save your session (all data and settings) as a JSON file.
-- Load previous sessions to continue analysis or compare results.
-
-### 4. **Tag & Color Sessions**
-- Add a tag (e.g., "Office") and pick a color for easy session identification.
-
-### 5. **User Notes**
-- Add notes for each session in the sidebar.
-
-### 6. **User Feedback Poll**
-- Rate your comfort using the poll and see live feedback statistics.
-
-### 7. **Download History**
-- Download your PMV/PPD history as a CSV file for further analysis.
-
-### 8. **Visualizations**
-- View real-time and historical comfort data with:
-  - PMV/PPD line charts
-  - Comfort timeline (color-coded)
-  - Comfort vs Discomfort pie chart
-  - Session statistics (min, max, avg)
-
-### 9. **Help & Documentation**
-- Expand the help section in the app for quick instructions and metric explanations.
-
----
-
-## 📊 Example Screenshots
-
-> _Add screenshots of the app in both light and dark mode here._
-
----
-
-## 📦 Dependencies
-
-- streamlit
-- pandas
-- numpy
-- altair
-- qrcode
-- Pillow
-- pythermalcomfort
-
-Install all dependencies with:
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
----
+3. Run the application:
+```bash
+streamlit run app.py
+```
+
+## 📖 Detailed Usage Guide
+
+### 1. Setting Up Parameters
+- Use the sidebar to adjust all environmental parameters
+- Set your comfort thresholds (PMV and PPD ranges)
+- Customize the app appearance with title, subtitle, and colors
+
+### 2. Monitoring Comfort
+- View real-time PMV/PPD values
+- Check comfort status indicators
+- Monitor environmental parameters
+- Track session duration
+
+### 3. Analyzing Data
+- View historical PMV/PPD trends
+- Analyze comfort timeline
+- Check comfort statistics
+- Review user feedback distribution
+
+### 4. Session Management
+- Save current session data
+- Load previous sessions
+- Add session notes
+- Tag sessions for easy identification
+
+### 5. User Feedback
+- Submit comfort feedback
+- View feedback statistics
+- Track comfort trends over time
+
+## 🔧 Technical Details
+
+### PMV (Predicted Mean Vote)
+- Range: -3 (cold) to +3 (hot)
+- Comfort zone: -0.5 to +0.5
+- Based on ISO 7730-2005 standard
+
+### PPD (Predicted Percentage of Dissatisfied)
+- Range: 0% to 100%
+- Comfort threshold: < 10%
+- Calculated from PMV values
+
+## 📦 Dependencies
+
+- streamlit>=1.24.0
+- pandas>=1.5.0
+- numpy>=1.21.0
+- altair>=4.2.0
+- pythermalcomfort>=2.0.0
+- Pillow>=9.0.0
+- qrcode>=7.3.1
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## 📝 License
 
-MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
----
-
-## 🙏 Credits
+## 🙏 Acknowledgments
 
 - Built with [Streamlit](https://streamlit.io/)
 - PMV/PPD calculations via [pythermalcomfort](https://github.com/CenterForTheBuiltEnvironment/pythermalcomfort)
-- UI inspired by modern dashboard best practices
-
----
-
-## 💡 Contributing
-
-Pull requests and suggestions are welcome! Please open an issue or submit a PR. 
+- UI inspired by modern dashboard best practices 
