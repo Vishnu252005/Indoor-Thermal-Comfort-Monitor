@@ -13,6 +13,8 @@ thermal-comfort-monitor/
 │   └── thermal_comfort.py # PMV/PPD calculations
 ├── components/           # UI components
 │   └── ui_components.py  # Reusable UI elements
+├── sensors/             # Sensor interface
+│   └── sensor_interface.py # Arduino sensor integration
 ├── styles/              # Custom styling
 │   └── custom_css.py    # Custom CSS styles
 └── utils/               # Utility functions
@@ -25,6 +27,7 @@ thermal-comfort-monitor/
 - Live PMV/PPD calculations using ISO 7730-2005 model
 - Instant updates of comfort metrics
 - Real-time visualization of comfort status
+- Optional Arduino sensor integration for automatic data collection
 
 ### 2. Environmental Parameters
 - Air Temperature (°C)
@@ -33,6 +36,7 @@ thermal-comfort-monitor/
 - Air Velocity (m/s)
 - Metabolic Rate (met)
 - Clothing Insulation (clo)
+- Automatic sensor readings (when using Arduino)
 
 ### 3. Interactive Visualizations
 - PMV History Chart
@@ -58,23 +62,34 @@ thermal-comfort-monitor/
 - Visual feedback statistics
 - Three-level comfort rating (Too Cold, Comfortable, Too Hot)
 
+### 7. Sensor Integration
+- Arduino-compatible sensor support
+- Real-time environmental data collection
+- Automatic parameter updates
+- Easy sensor connection/disconnection
+- Support for multiple sensor types:
+  - Temperature sensors
+  - Humidity sensors
+  - Air velocity sensors
+  - Mean radiant temperature sensors
+
 ## 🚀 Installation
 
 1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/thermal-comfort-monitor.git
-cd thermal-comfort-monitor
-```
+   ```bash
+   git clone https://github.com/yourusername/thermal-comfort-monitor.git
+   cd thermal-comfort-monitor
+   ```
 
 2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3. Run the application:
-```bash
-streamlit run app.py
-```
+   ```bash
+   streamlit run app.py
+   ```
 
 ## 📖 Detailed Usage Guide
 
@@ -106,6 +121,14 @@ streamlit run app.py
 - View feedback statistics
 - Track comfort trends over time
 
+### 6. Using Sensors (Optional)
+1. Connect your Arduino with compatible sensors
+2. Upload the provided Arduino code to your board
+3. Uncomment the sensor interface code in app.py
+4. Update the COM port in the code if needed
+5. Click "Connect to Sensors" in the sidebar
+6. View real-time sensor readings and automatic updates
+
 ## 🔧 Technical Details
 
 ### PMV (Predicted Mean Vote)
@@ -118,6 +141,12 @@ streamlit run app.py
 - Comfort threshold: < 10%
 - Calculated from PMV values
 
+### Sensor Integration
+- Uses pyserial for Arduino communication
+- Supports multiple sensor types
+- Automatic data parsing and validation
+- Error handling for connection issues
+
 ## 📦 Dependencies
 
 - streamlit>=1.24.0
@@ -127,6 +156,7 @@ streamlit run app.py
 - pythermalcomfort>=2.0.0
 - Pillow>=9.0.0
 - qrcode>=7.3.1
+- pyserial>=3.5 (for sensor integration)
 
 ## 🤝 Contributing
 
@@ -139,5 +169,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🙏 Acknowledgments
 
 - Built with [Streamlit](https://streamlit.io/)
-- PMV/PPD calculations via [pythermalcomfort](https://github.com/CenterForTheBuiltEnvironment/pythermalcomfort)
-- UI inspired by modern dashboard best practices 
+- UI inspired by modern dashboard best practices
+- Sensor integration based on Arduino and pyserial

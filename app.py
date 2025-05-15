@@ -14,6 +14,11 @@ import socket
 import random
 from utils.helpers import get_local_ip, generate_qr_code, save_session_data, load_session_data, get_current_time
 
+# Sensor Interface Integration (Commented out - Uncomment when using physical sensors)
+# from sensors.sensor_interface import SensorInterface
+# sensor = SensorInterface(port='COM3')  # Change port as needed
+# sensor_connected = False
+
 # Set page config for better layout
 st.set_page_config(
     page_title="Thermal Comfort Monitor",
@@ -90,6 +95,39 @@ with st.sidebar:
         }
         </style>
     """, unsafe_allow_html=True)
+    
+    # Sensor Connection Section (Commented out - Uncomment when using physical sensors)
+    """
+    st.markdown("### 🔌 Sensor Connection")
+    with st.expander("Connect Sensors", expanded=True):
+        if st.button("Connect to Sensors"):
+            sensor_connected = sensor.connect()
+            if sensor_connected:
+                st.success("✅ Connected to sensors successfully!")
+            else:
+                st.error("❌ Failed to connect to sensors")
+        
+        if sensor_connected:
+            if st.button("Disconnect Sensors"):
+                sensor.disconnect()
+                sensor_connected = False
+                st.info("Sensors disconnected")
+            
+            # Read sensor data
+            sensor_data = sensor.read_sensors()
+            if sensor_data:
+                st.markdown("#### 📊 Sensor Readings")
+                st.write(f"Air Temperature: {sensor_data['air_temperature']:.1f}°C")
+                st.write(f"Relative Humidity: {sensor_data['relative_humidity']:.1f}%")
+                st.write(f"Air Velocity: {sensor_data['air_velocity']:.2f} m/s")
+                st.write(f"Mean Radiant Temp: {sensor_data['mean_radiant_temp']:.1f}°C")
+                
+                # Update environmental parameters with sensor data
+                air_temperature = sensor_data['air_temperature']
+                relative_humidity = sensor_data['relative_humidity']
+                air_velocity = sensor_data['air_velocity']
+                mean_radiant_temp = sensor_data['mean_radiant_temp']
+    """
     
     # Real-time clock with better styling
     st.markdown(f"""
