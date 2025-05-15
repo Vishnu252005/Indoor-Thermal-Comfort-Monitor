@@ -12,6 +12,7 @@ from PIL import Image
 from pythermalcomfort.models import pmv_ppd_iso
 import socket
 import random
+from utils.helpers import get_local_ip, generate_qr_code, save_session_data, load_session_data, get_current_time
 
 # Set page config for better layout
 st.set_page_config(
@@ -68,6 +69,8 @@ if 'user_notes' not in st.session_state:
     st.session_state.user_notes = ""
 if 'session_start' not in st.session_state:
     st.session_state.session_start = datetime.now()
+if 'feedback_counts' not in st.session_state:
+    st.session_state.feedback_counts = {'Too Cold': 0, 'Comfortable': 0, 'Too Hot': 0}
 
 # Detect local IP address for QR code
 try:
@@ -92,9 +95,34 @@ with st.sidebar:
     st.markdown(f"""
         <div style='background-color: #4CAF50; color: white; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1rem;'>
             <h3 style='margin: 0;'>Current Time</h3>
-            <p style='margin: 0; font-size: 1.2rem;'>{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+            <p style='margin: 0; font-size: 1.2rem;'>{get_current_time()}</p>
         </div>
     """, unsafe_allow_html=True)
+
+    # QR Code for Network Access
+    st.markdown("### 📱 Mobile Access")
+    try:
+        network_url = f"http://{get_local_ip()}:8501"
+        qr = qrcode.QRCode(
+            version=1,
+            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            box_size=10,
+            border=4,
+        )
+        qr.add_data(network_url)
+        qr.make(fit=True)
+        qr_img = qr.make_image(fill_color="black", back_color="white")
+        
+        # Convert PIL Image to bytes
+        img_byte_arr = io.BytesIO()
+        qr_img.save(img_byte_arr, format='PNG')
+        img_byte_arr = img_byte_arr.getvalue()
+        
+        # Display QR code with just the caption "Scan to access"
+        st.image(img_byte_arr, caption="Scan to access", use_container_width=True)
+        st.info("Scan this QR code with your mobile device to access the app on your local network.")
+    except Exception as e:
+        st.error(f"Could not generate QR code: {str(e)}")
 
     # User notes with better styling
     st.markdown("### 📝 Session Notes")
@@ -345,9 +373,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # --- User Feedback Poll ---
-if 'feedback_counts' not in st.session_state:
-    st.session_state.feedback_counts = {'Too Cold': 0, 'Comfortable': 0, 'Too Hot': 0}
-
 st.markdown("### 🗳️ User Comfort Feedback")
 feedback_col1, feedback_col2 = st.columns([2, 3])
 with feedback_col1:
