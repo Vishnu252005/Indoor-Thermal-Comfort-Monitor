@@ -21,6 +21,26 @@ thermal-comfort-monitor/
     └── helpers.py       # Helper functions
 ```
 
+## 📚 Documentation and Flowchart
+
+### Documentation
+The project includes comprehensive documentation covering:
+- Detailed API documentation for all modules
+- Installation and setup guides
+- Usage examples and best practices
+- Troubleshooting guides
+- Sensor integration documentation
+- API reference for all functions and classes
+
+### System Flowchart
+A detailed flowchart has been added to visualize:
+- Data flow between components
+- User interaction flow
+- Sensor data processing pipeline
+- PMV/PPD calculation process
+- Session management workflow
+- Real-time monitoring system architecture
+
 ## ✨ Key Features
 
 ### 1. Real-Time Monitoring
